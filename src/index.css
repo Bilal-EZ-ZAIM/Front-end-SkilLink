@@ -11,3 +11,56 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+a{
+  text-decoration: none;
+  
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+}
+ul{
+  list-style: none;
+}
+
+/*responsive */
+
+.contenr {
+  margin: 0 auto;
+}
+
+/* large */
+@media (min-width: 1200px) {
+  .contenr {
+    width: 1700px;
+    
+  }
+}
+
+/* small */
+@media (min-width: 768px) {
+  .contenr {
+    width: 90%;
+    max-width: none;
+  }
+}
+
+/* medium */
+@media (min-width: 992px) {
+  .contenr {
+    width: 90%;
+    
+  }
+}
+
+@media (max-width: 768px) {
+  .contenr {
+    padding: 0 10px;
+  }
+}
