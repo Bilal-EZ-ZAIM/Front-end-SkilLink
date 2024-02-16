@@ -1,0 +1,11 @@
+.rigth{
+    height: 40vh;
+    width: 400px;
+    background-color: gray;
+}
+
+@media (max-width: 992px) {
+    .rigth {
+        display: none;
+    }
+}

@@ -1,0 +1,10 @@
+.button-compontes{
+    background-color: #1E88E5;
+    border-radius: 5px;
+    padding: 5px;
+    width: 200px;
+    color: #ffffff;
+    font-size: 20px;
+    font-weight: bold;
+    align-items: center;
+}
