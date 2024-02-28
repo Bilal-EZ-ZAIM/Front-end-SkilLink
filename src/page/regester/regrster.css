@@ -1,0 +1,13 @@
+/* Register.css */
+.regester {
+  min-height: 90vh;
+}
+
+.form-control {
+  position: relative;
+  padding-top: 20px;
+}
+
+.has-error input {
+  border-color: red;
+}

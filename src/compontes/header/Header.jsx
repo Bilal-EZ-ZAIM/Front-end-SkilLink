@@ -21,6 +21,8 @@ const Header = () => {
           <li onClick={()=> settoogle(true)} > <NavLink to="/independants"> Indépendants </NavLink></li>
           <li onClick={()=> settoogle(true)} > <NavLink to="/login"> Se connecter </NavLink></li>
           <li onClick={()=> settoogle(true)} > <NavLink to="/regester"> S'inscrire </NavLink></li>
+          <li onClick={()=> settoogle(true)} > <NavLink to="/admin"> Admin </NavLink></li>
+          <li onClick={()=> settoogle(true)} > <NavLink to="/profile"> profile </NavLink></li>
         </ul>
       </div>
     </header>
