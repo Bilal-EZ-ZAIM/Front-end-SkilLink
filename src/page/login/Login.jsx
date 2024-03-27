@@ -6,17 +6,17 @@ import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import { UserContext } from "../../context/ContextProvider";
 
-const Register = () => {
-  const { utilisateur , setutilisateur  , isLogin , isToken , setToken} = useContext(UserContext);
+const Login = () => {
+  const { isAuthenticated , setIsAuthenticated , utilisateur , setUtilisateur  , isLogin , isToken , setToken} = useContext(UserContext);
 
-  isToken();
-  const Navigaet = useNavigate();
+
+
+  const Navigaet =  useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errorEmail, setErrorEmail] = useState("");
   const [errorPassword, setErrorPassword] = useState("");
 
-  console.log(isToken());
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -28,8 +28,6 @@ const Register = () => {
     try {
       const response = await axios.post('http://127.0.0.1:8000/api/login', formData);
 
-      
-     
 
       if (response.status === 200) {
         console.log("Utilisateur registered successfully!");
@@ -39,10 +37,13 @@ const Register = () => {
         setErrorPassword("");
         console.log(response.status);
         console.log(response.data.token);
-        setutilisateur(response.data.user);
-        isToken(response.data.token);
+
+        setIsAuthenticated(true);
         
-        Navigaet('/');
+        localStorage.setItem("token", response.data.token);
+        setUtilisateur(response.data.user);
+        Navigaet('/profile');
+
       }
     } catch (error) {
       if (error.response) {
@@ -109,4 +110,4 @@ const Register = () => {
   );
 };
 
-export default Register;
+export default Login;

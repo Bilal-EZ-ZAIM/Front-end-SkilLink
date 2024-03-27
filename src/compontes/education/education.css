@@ -1,0 +1,13 @@
+.profile-info {
+    padding: 0 20px;
+
+    border-bottom: 2px solid #c6c5c5;
+}
+
+.profile-info p {
+    margin-bottom: 10px;
+}
+
+.profile-info p strong {
+    margin-right: 5px;
+}
