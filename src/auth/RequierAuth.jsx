@@ -9,7 +9,7 @@ const RequierAuth = () => {
     
     return (
     
-        isAuthenticated  ? <Outlet /> : <Navigate to="*" />
+        isAuthenticated  ? <Outlet /> : <Navigate to="/" />
     )
 }
 

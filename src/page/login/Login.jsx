@@ -7,16 +7,13 @@ import Swal from "sweetalert2";
 import { UserContext } from "../../context/ContextProvider";
 
 const Login = () => {
-  const { isAuthenticated , setIsAuthenticated , utilisateur , setUtilisateur  , isLogin , isToken , setToken} = useContext(UserContext);
+  const { setUserFound, setIsAuthenticated, utilisateur, setUtilisateur, isLogin, isToken, setToken, setTypeUtilisateur, TypeUtilisateur } = useContext(UserContext);
 
-
-
-  const Navigaet =  useNavigate();
+  const Navigaet = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errorEmail, setErrorEmail] = useState("");
   const [errorPassword, setErrorPassword] = useState("");
-
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -27,9 +24,11 @@ const Login = () => {
 
     try {
       const response = await axios.post('http://127.0.0.1:8000/api/login', formData);
-
-
       if (response.status === 200) {
+        setTypeUtilisateur(response.data.user.role_id)
+        setUtilisateur(response.data.user);
+        setIsAuthenticated(true);
+        setUserFound(true);
         console.log("Utilisateur registered successfully!");
         setEmail("");
         setPassword("");
@@ -37,24 +36,20 @@ const Login = () => {
         setErrorPassword("");
         console.log(response.status);
         console.log(response.data.token);
-
-        setIsAuthenticated(true);
-        
         localStorage.setItem("token", response.data.token);
-        setUtilisateur(response.data.user);
-        Navigaet('/profile');
 
+        Navigaet('/');
       }
     } catch (error) {
       if (error.response) {
-        
+
         console.log("Error response:", error.response);
         console.log("Error status:", error.response.status);
         console.log("Error data : ", error.response.data);
         setErrorEmail(error.response.data.error.email);
         setErrorPassword(error.response.data.error.password);
-        if(typeof(error.response.data.error) === "string"){
-         
+        if (typeof (error.response.data.error) === "string") {
+
           Swal.fire({
             title: 'Error!',
             text: error.response.data.error,
@@ -75,7 +70,6 @@ const Login = () => {
   return (
     <div className="regester container-md d-flex justify-content-between align-items-center">
       <div className="loginContainer">
-  <h1>{isLogin == true ? 'bilal ' : "zaim"}</h1>
         <form onSubmit={handleSubmit}>
           <div className={"form-floating mb-3" + (errorEmail ? " has-error" : "")}>
             <input
@@ -101,6 +95,7 @@ const Login = () => {
             <label htmlFor="password">Mot de passe</label>
             {errorPassword && <AlertError error={errorPassword} />}
           </div>
+          
           <button type="submit" className="btn btn-primary w-100">
             Se connecter
           </button>

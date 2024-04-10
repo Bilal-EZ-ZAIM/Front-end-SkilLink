@@ -6,7 +6,7 @@ import { NavLink } from "react-router-dom";
 import { UserContext } from "../../context/ContextProvider";
 const Header = () => {
   const [toogle, settoogle] = useState(true);
-  const { TypeUtilisateur, isAuthenticated } = useContext(UserContext);
+  const { TypeUtilisateur, isAuthenticated, utilisateur, setpage } = useContext(UserContext);
   const [imgData, setImgData] = useState(null);
   return (
     <header className="header">
@@ -22,7 +22,14 @@ const Header = () => {
           <li onClick={() => settoogle(true)} > <NavLink to="/"> Home </NavLink></li>
           <li onClick={() => settoogle(true)} > <NavLink to="/projets"> Offres d’emploi  </NavLink></li>
           <li onClick={() => settoogle(true)} > <NavLink to="/independants"> Indépendants </NavLink></li>
-
+          <li onClick={() => settoogle(true)} > <NavLink to="/messager"> Messager </NavLink></li>
+          {/* <li className="btn btn dropdown-toggle" type="button" data-bs-toggle="dropdown" onClick={() => settoogle(true)} > <NavLink to="/independants"> <i className="bi bi-bell"></i>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="#">Action</a></li>
+              <li><a class="dropdown-item" href="#">Another action</a></li>
+              <li><a class="dropdown-item" href="#">Something else here</a></li>
+            </ul>
+          </NavLink></li> */}
           {!isAuthenticated && (
             <li onClick={() => settoogle(true)}>
               <NavLink to="/login">Se connecter</NavLink>
@@ -40,8 +47,66 @@ const Header = () => {
             <li onClick={() => settoogle(true)} > <NavLink to="/admin"> Admin </NavLink></li>
           )}
 
+
+
+
+
           {TypeUtilisateur === 2 && (
-            <li onClick={() => settoogle(true)} > <NavLink to="/profile">Profile</NavLink></li>
+            <li onClick={() => settoogle(true)} > <NavLink to="/profile">
+              {utilisateur.image ? (
+                <img
+                  src={utilisateur.image}
+                  alt="User Image"
+                  style={{
+                    width: '30px',
+                    height: '30px',
+                    borderRadius: '50px'
+                  }}
+                />
+              ) : (
+                <img
+                  src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png"
+                  alt="Default Image"
+                  style={{
+                    width: '50px',
+                    height: '50px',
+                    borderRadius: '50px'
+                  }}
+                />
+              )}
+
+
+
+            </NavLink></li>
+          )}
+
+          {TypeUtilisateur === 3 && (
+            <li onClick={() => settoogle(true)} > <NavLink to="/cleint">
+              {utilisateur.image ? (
+                <img
+                  src={utilisateur.image}
+                  alt="User Image"
+                  style={{
+                    width: '30px',
+                    height: '30px',
+                    borderRadius: '50px'
+                  }}
+                />
+              ) : (
+                <img
+                  src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png"
+                  alt="Default Image"
+                  style={{
+                    width: '50px',
+                    height: '50px',
+                    borderRadius: '50px'
+                  }}
+                />
+              )}
+
+
+
+            </NavLink></li>
           )}
 
         </ul>

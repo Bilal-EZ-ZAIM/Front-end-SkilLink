@@ -11,7 +11,6 @@ const Home = () => {
 
   const { utilisateur , setutilisateur , Token , isToken , isLogin} = useContext(UserContext);
 
-  console.log(utilisateur);
   
   return (
     <section className='homePage bg-white'>

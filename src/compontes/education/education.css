@@ -11,3 +11,11 @@
 .profile-info p strong {
     margin-right: 5px;
 }
+
+@media (max-width:440px) {
+
+    .profile-info {
+        padding: 0 5px;
+    }
+    
+}

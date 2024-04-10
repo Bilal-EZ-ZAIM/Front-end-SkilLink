@@ -1,6 +1,7 @@
 import React from 'react'
 import './CartCommentes.css'
 const CartCommentes = ({developer ,image , commantes , author} ) => {
+  console.log("fvvv" + commantes);
   return (
     <div className='cart_commaints'>
        <div className='image_cart'>
