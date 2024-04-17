@@ -1,17 +1,18 @@
 import React, { useContext, useState } from 'react'
+import './contact.css'
+
 import CartProject from '../cartProject/CartProject'
 import AlertError from '../error/AlertError'
 import axios from 'axios'
 import Swal from 'sweetalert2'
 import { UserContext } from '../../context/ContextProvider'
 import Title from '../title/Title'
-
-
-const ProjectProfile = ({ type, Project }) => {
+const Contact = ({ type , Contact }) => {
 
     const {
-        setIdProject , delet
+        setIdProject, delet
     } = useContext(UserContext);
+
 
 
 
@@ -98,18 +99,14 @@ const ProjectProfile = ({ type, Project }) => {
     };
 
     const [numberAfficehrProject, setnumberAfficehrProject] = useState(3);
-    const displayedProjects = Project ? Project.slice(0, numberAfficehrProject) : [];
-    const handelAffecher = () => {
-
-        setnumberAfficehrProject(Project.length);
-    }
+    
     return (
         <div className='commaintear portfolio'>
             <div>
-                <Title title={"portfolio"} />
+                <Title title={"Contact"} />
 
                 {
-                    type ? <button className="btn ajouter_project " data-bs-toggle="modal" data-bs-target="#project" >Ajouter Project</button> : null
+                    type ? <button className="btn ajouter_project " data-bs-toggle="modal" data-bs-target="#project" >Modifer Contact</button> : null
                 }
 
 
@@ -187,7 +184,7 @@ const ProjectProfile = ({ type, Project }) => {
 
 
             <div className='list_cart_project'>
-                {Project ? (
+                {/* {Project ? (
                     displayedProjects.map((item, index) => (
                         <CartProject
                             project={item}
@@ -195,22 +192,13 @@ const ProjectProfile = ({ type, Project }) => {
                     ))
                 ) : (
                     <div disabled>Loading ...</div>
-                )}
+                )} */}
             </div>
 
-            {
-                displayedProjects.length > 3 && <div className="text-center m-4">
-                    <button
-                        className="btn btn-danger"
-                        onClick={handelAffecher}
-                    >
-                        Afficher tous
-                    </button>
-                </div>
-            }
+            
 
         </div>
     )
 }
 
-export default ProjectProfile
+export default Contact

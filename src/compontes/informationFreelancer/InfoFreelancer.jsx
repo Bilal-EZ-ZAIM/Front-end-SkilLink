@@ -8,10 +8,9 @@ import axios from 'axios';
 const InfoFreelancer = ({ InfoFreelancer, type }) => {
 
     const {
-        Educations, Project, Comantear,
-        Competons, Developer, setDeveloper,
-        IdSkills, setIdSkills, isLogin, fetchData, nomTypeDeveloper,
-        logout, handleFileChange, handleSubmit, TypeUtilisateur
+        Developer, setDeveloper,
+        isLogin, fetchData, nomTypeDeveloper,
+        handleFileChange, handleSubmit, TypeUtilisateur
 
     } = useContext(UserContext);
 
@@ -25,12 +24,11 @@ const InfoFreelancer = ({ InfoFreelancer, type }) => {
     const [description, setDescription] = useState(InfoFreelancer?.discription);
     const [prixHore, setPrixHore] = useState(InfoFreelancer?.prix_horaire);
     const [TypeDevelopres, setTypeDevelopres] = useState(InfoFreelancer?.developer)
-    const [password, setPassword] = useState("");
-    const [userType, setUserType] = useState("");
     const [errorNom, setErrorNom] = useState("");
     const [errorPrenom, setErrorPrenom] = useState("");
-    const [errorDescription, setErrorDescription] = useState("");
-    const [countMDP, setcountMDP] = useState(1)
+    const [countMDP, setcountMDP] = useState(1);
+
+
     const handleUpditSubmit = async (event) => {
         event.preventDefault();
 
@@ -44,12 +42,11 @@ const InfoFreelancer = ({ InfoFreelancer, type }) => {
         const formData = {
             nom: nom,
             prenom: prenom,
-            description: description,
+            discription: description,
             prix_horaire: prixHore,
             developer: TypeDevelopres,
         };
 
-        console.log(formData);
         try {
             const response = await axios.put('http://127.0.0.1:8000/api/updateProfile', formData, config);
 
@@ -59,10 +56,6 @@ const InfoFreelancer = ({ InfoFreelancer, type }) => {
             if (response.status === 201) {
                 setcountMDP(pre => pre + 1)
                 isLogin()
-                setNom("");
-                setPrenom("");
-                setErrorPrenom("");
-                setErrorDescription("");
 
                 Swal.fire({
                     title: 'Succès!',
@@ -81,6 +74,7 @@ const InfoFreelancer = ({ InfoFreelancer, type }) => {
                 setErrorNom(error.response.data.error.nom);
                 setErrorPrenom(error.response.data.error.prenom);
                 setDescription(error.response.data.error.discription)
+
             } else if (error.request) {
                 console.error("No response received:", error.request);
             } else {
@@ -88,6 +82,8 @@ const InfoFreelancer = ({ InfoFreelancer, type }) => {
             }
         }
     };
+
+
     useEffect(() => {
         if (TypeUtilisateur === 2) {
             fetchData('DeveloperType', setDeveloper);
@@ -101,7 +97,7 @@ const InfoFreelancer = ({ InfoFreelancer, type }) => {
                 <div className='image'>
                     <img src={InfoFreelancer?.image} alt="" />
                     {
-                        type ? <button className="btn uplod " data-bs-toggle="modal" data-bs-target="#uplod" >uplod img</button> : null
+                        type ? <button className="btn " data-bs-toggle="modal" data-bs-target="#uplod" ><i className="bi bi-upload fs-3 b-0 mt-3"></i> </button> : null
                     }
 
                     {
@@ -120,7 +116,7 @@ const InfoFreelancer = ({ InfoFreelancer, type }) => {
                     }
 
 
-                    <div className='contact'>
+                    {/* <div className='contact'>
                         <div className='email'>
                             <i className="bi bi-envelope-fill"></i>
                             <strong> {InfoFreelancer?.email} </strong>
@@ -129,7 +125,7 @@ const InfoFreelancer = ({ InfoFreelancer, type }) => {
                             <i class="bi bi-telephone-fill"></i>
                             <strong> +212 658123478 </strong>
                         </div>
-                    </div>
+                    </div> */}
                 </div>
 
                 <div className='description'>

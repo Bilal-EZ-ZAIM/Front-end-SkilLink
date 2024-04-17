@@ -36,7 +36,7 @@ const ContextProvider = ({ children }) => {
   const [Skills, setSkills] = useState();
   const [Project, setProject] = useState();
   const [freelancers, setfreelancer] = useState();
-  const [CountOfferDeOmpoila, setCountOfferDeOmpoila] = useState();
+  const [CountOfferDeOmpoila, setCountOfferDeOmpoila] = useState(1);
   const [CountEdicatio, setCountEdicatio] = useState();
   const [datelsFreelancers, setdatelsFreelancers] = useState();
   const [skillsDitalis, setskillsDitalis] = useState();
@@ -47,6 +47,9 @@ const ContextProvider = ({ children }) => {
   const [newMessage, setnewMessage] = useState();
   const [getMessage, setgetMessage] = useState(1);
   const [nomTypeDeveloper, setnomTypeDeveloper] = useState();
+  const [SupProject, setSupProject] = useState(1);
+  const [getContact, setgetContact] = useState();
+  const [CountCountact, setCountCountact] = useState(1);
   const handleFileChange = (event) => {
     setSelectedFile(event.target.files[0]);
     console.log(selectedFile);
@@ -62,7 +65,6 @@ const ContextProvider = ({ children }) => {
     const formData = new FormData();
     formData.append('image', selectedFile);
 
-    console.log(formData);
     const token = localStorage.getItem('token');
 
 
@@ -107,6 +109,42 @@ const ContextProvider = ({ children }) => {
   };
 
 
+  const delet = async (endPoint, id , UseCount) => {
+    const storedToken = localStorage.getItem('token');
+
+   
+    try {
+      const config = {
+        headers: {
+          Authorization: 'Bearer ' + storedToken,
+          'Content-Type': 'application/json'
+        }
+      };
+      const response = await axios.delete(`${api}${endPoint}/` + id, config);
+      console.log(response);
+
+      if (response.status === 201) {
+
+        UseCount(prev => prev + 1);
+        Swal.fire({
+          title: 'Succès!',
+          text: response.data.message,
+          icon: 'success',
+          customClass: {
+            background: 'green',
+          }
+        });
+
+      } else {
+        console.error('Échec de l\'ajout de la compétence');
+      }
+
+
+    } catch (error) {
+      console.error('Erreur lors de l\'ajout de la compétence :', error);
+    }
+  }
+
   const logout = async () => {
     const storedToken = localStorage.getItem('token');
 
@@ -126,7 +164,6 @@ const ContextProvider = ({ children }) => {
 
           setUtilisateur("");
           setIsAuthenticated(false);
-          // Navigaet('/login');
         }
 
       } catch (error) {
@@ -196,11 +233,7 @@ const ContextProvider = ({ children }) => {
     }
   };
 
-  
 
- 
-
-  console.log(TypeUtilisateur);
 
   useEffect(() => {
     if (storedToken) {
@@ -279,7 +312,7 @@ const ContextProvider = ({ children }) => {
 
   return (
     <UserContext.Provider value={{
-      Educations,
+      Educations, delet,getContact, setgetContact,
       Comantear, setComantear, api,
       IdSkills, setIdSkills,
       isAuthenticated,
@@ -290,7 +323,7 @@ const ContextProvider = ({ children }) => {
       Competons, Developer,
       setProject, Project,
       setTypeUtilisateur, isLogin,
-      TypeUtilisateur,
+      TypeUtilisateur,CountCountact, setCountCountact,
       OfferDeOmpoloi,
       setOfferDeOmpoloi,
       getOfferDeOmoloi,
@@ -311,7 +344,7 @@ const ContextProvider = ({ children }) => {
       skillsDitalis, setskillsDitalis, projectDetails, setprojectDetails,
       commanterDatilse, setcommanterDatiles, educationsFrrelancer, seteducationsFrrelancer,
       sendMessage, getMessage, setgetMessage, handlSumeMessage,
-      nomTypeDeveloper, setnomTypeDeveloper , setDeveloper
+      nomTypeDeveloper, setnomTypeDeveloper, setDeveloper, SupProject, setSupProject
 
     }}>
       {children}

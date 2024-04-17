@@ -1,5 +1,4 @@
 import React, { useContext, useState } from 'react'
-import Title from '../title/Title'
 import CartCommentes from '../cartComments/CartCommentes'
 import { UserContext } from '../../context/ContextProvider';
 import AlertError from '../error/AlertError';

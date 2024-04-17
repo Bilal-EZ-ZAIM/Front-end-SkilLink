@@ -10,7 +10,7 @@ const Register = () => {
   const [prenom, setPrenom] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [userType, setUserType] = useState("");
+  const [userType, setUserType] = useState(2);
   const [description, setDescription] = useState("");
   const [errorNom, setErrorNom] = useState("");
   const [errorPrenom, setErrorPrenom] = useState("");
@@ -27,7 +27,7 @@ const Register = () => {
       email: email,
       password: password,
       role_id: userType,
-      discription:description
+      discription: description
     };
 
     console.log(formData);
@@ -126,15 +126,6 @@ const Register = () => {
             <label htmlFor="password">Mot de passe</label>
             {errorPassword && <AlertError error={errorPassword} />}
           </div>
-          <div class="form-check ">
-            <input className="form-check-input " onChange={() => setUserType(3)}
-              type="radio"
-              name="flexRadioDefault" id="client"
-              value="client" />
-            <label class="form-check-label" for="flexRadioDefault1">
-              Client
-            </label>
-          </div>
           <div class="form-check">
             <input class="form-check-input"
               type="radio"
@@ -142,9 +133,17 @@ const Register = () => {
               id="freelancer"
               value="freelancer"
               onChange={() => setUserType(2)} checked />
-
             <label class="form-check-label" for="flexRadioDefault2">
               freelancer
+            </label>
+          </div>
+          <div class="form-check ">
+            <input className="form-check-input " onChange={() => setUserType(3)}
+              type="radio"
+              name="flexRadioDefault" id="client"
+              value="client" />
+            <label class="form-check-label" for="flexRadioDefault1">
+              Client
             </label>
           </div>
           <button type="submit" className="btn btn-primary w-100">

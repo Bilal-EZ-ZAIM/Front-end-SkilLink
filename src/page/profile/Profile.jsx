@@ -4,23 +4,21 @@ import { UserContext } from '../../context/ContextProvider';
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import './profile.css';
-import Title from '../../compontes/title/Title';
-import CartCommentes from '../../compontes/cartComments/CartCommentes';
 import AlertError from "../../compontes/error/AlertError";
-import CartProject from '../../compontes/cartProject/CartProject';
 import Education from '../../compontes/education/Education';
 import InfoFreelancer from '../../compontes/informationFreelancer/InfoFreelancer';
 import CompetonceFreelancer from '../../compontes/competonceFreelancer/CompetonceFreelancer';
 import ProjectProfile from '../../compontes/project/ProjectProfile';
 import CommentareFreelancer from '../../compontes/comontaire/CommentareFreelancer';
+import Contact from '../../compontes/contatc/Contact';
 
 const Profile = () => {
 
   const {
-    count, fetchData,
-    Comantear, setComantear,
+    count, fetchData,getContact, setgetContact,
+    Comantear, setComantear,CountCountact, setCountCountact,
     IdSkills, Project, setProject, IdProject,
-    utilisateur, CountEdicatio, setCountEdicatio,
+    utilisateur, CountEdicatio, setCountEdicatio, SupProject, setSupProject,
     logout, Skills, setSkills, setEducation, Educations, getOfferDeOmoloi, nomTypeDeveloper, setnomTypeDeveloper
 
   } = useContext(UserContext);
@@ -76,11 +74,16 @@ const Profile = () => {
 
   useEffect(() => {
     fetchData('project', setProject);
-  }, [IdProject]);
+  }, [IdProject, SupProject]);
 
   useEffect(() => {
     fetchData('get/education', setEducation);
   }, [CountEdicatio]);
+  useEffect(() => {
+    fetchData('contact', setgetContact);
+  }, [CountCountact]);
+
+  console.log(getContact);
 
   useEffect(() => {
     getOfferDeOmoloi('getDeveloperType', setnomTypeDeveloper);
@@ -109,7 +112,7 @@ const Profile = () => {
       ecole: linkGithub,
       date_debut: data,
       date_fin: dataF,
-      
+
     };
 
 
@@ -189,12 +192,13 @@ const Profile = () => {
 
         <div class='info'>
 
-          <InfoFreelancer InfoFreelancer={utilisateur} type={true}  />
+          <InfoFreelancer InfoFreelancer={utilisateur} type={true} />
 
           <CompetonceFreelancer skills={Skills} type={true} />
         </div>
+        <Contact type={true}   Contact={getContact} />
         <CommentareFreelancer commanter={Comantear} type={false} />
-        <ProjectProfile type={true} Project={Project} />
+        <ProjectProfile type={true}  Project={Project}  />
 
         <div className='commaintear education portfolio'>
 

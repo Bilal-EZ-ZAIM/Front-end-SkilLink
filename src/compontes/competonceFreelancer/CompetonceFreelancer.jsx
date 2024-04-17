@@ -7,11 +7,10 @@ import Swal from 'sweetalert2';
 const CompetonceFreelancer = ({ type, skills }) => {
 
     const {
-        Educations, Project, Comantear,
-        Competons, Developer,
-        IdSkills, setIdSkills, setSkills,
-        utilisateur,
-        logout, handleSubmit, setCompetons, fetchData, getOfferDeOmoloi
+
+        Competons, delet,
+        IdSkills, setIdSkills,
+        setCompetons, getOfferDeOmoloi
 
     } = useContext(UserContext);
 
@@ -20,50 +19,13 @@ const CompetonceFreelancer = ({ type, skills }) => {
     }, []);
 
 
-
-
-
-
-
-
-
-
-
-
-
-
     const handleSuppremerCompetence = async (id) => {
 
+        await delet("suppermer/competonce", id , setIdSkills);
 
-        const storedToken = localStorage.getItem('token');
-        try {
-            const config = {
-                headers: {
-                    Authorization: 'Bearer ' + storedToken,
-                    'Content-Type': 'application/json'
-                }
-            };
-            const response = await axios.delete('http://127.0.0.1:8000/api/suppermer/competonce/' + id, config);
 
-            console.log(response.data.message);
-            if (response.status === 201) {
 
-                setIdSkills(prev => prev + 1);
-                Swal.fire({
-                    title: 'Succès!',
-                    text: response.data.message,
-                    icon: 'success',
-                    customClass: {
-                        background: 'green',
-                    }
-                });
 
-            } else {
-                console.error('Échec de l\'ajout de la compétence');
-            }
-        } catch (error) {
-            console.error('Erreur lors de l\'ajout de la compétence :', error);
-        }
     }
 
     const handleAddCompetence = async () => {

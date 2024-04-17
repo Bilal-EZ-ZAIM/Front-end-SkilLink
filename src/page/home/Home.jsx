@@ -7,11 +7,11 @@ import Button from '../../compontes/button/Button'
 import { UserContext } from '../../context/ContextProvider'
 
 const Home = () => {
-  
 
-  const { utilisateur , setutilisateur , Token , isToken , isLogin} = useContext(UserContext);
 
-  
+  const { utilisateur, setutilisateur, Token, isToken, isLogin } = useContext(UserContext);
+
+
   return (
     <section className='homePage bg-white'>
       <h1>{Token}</h1>
@@ -33,7 +33,7 @@ const Home = () => {
           </div>
 
           <div className='rigth'>
-
+            <img src={require('./img (1).png')} />
           </div>
         </div>
 
@@ -49,17 +49,57 @@ const Home = () => {
           </div>
 
           <div className='rigth'>
-
+            <img src={require('./img (2).png')} />
           </div>
 
         </div>
         <HeadingSection titre={"Choose Different Category "} />
 
-        <div className='d-flex justify-content-center align-items-center'>
-          <Button name='More Categories'></Button>
+
+
+        <div class="container ">
+          <div class="row">
+            <div class="col-md-4 mb-5">
+              <div class="card">
+                <img src={require('./frontEnd.png')}   class="card-img-top" alt="..." />
+                <div class="card-body">
+                  <h5 class="card-title">Front End</h5>
+                  <p class="card-text">Frontend fait référence à la partie visible et interactive d'un site Web ou d'une application. Il est développé en utilisant des langages Web tels que HTML, CSS et JavaScript, et gère tout ce que l'utilisateur voit et interagit avec.</p>
+
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-4 mb-5">
+              <div class="card">
+                <img src={require('./backEnd.png')} class="card-img-top" alt="..." />
+                <div class="card-body">
+                  <h5 class="card-title">Back End</h5>
+                  <p class="card-text">Backend fait référence à la partie invisible d'un site Web ou d'une application, qui gère les aspects techniques tels que les bases de données, le traitement des données et la logique de l'application. Il est souvent développé en utilisant des langages tels que Python, Ruby, PHP, Java, etc.</p>
+
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-4 mb-5">
+              <div class="card">
+                <img src={require("./fullStack.png")} class="card-img-top" alt="..." />
+                <div class="card-body">
+                  <h5 class="card-title">Full Stack</h5>
+                  <p class="card-text">Full Stack fait référence à la capacité de développer à la fois le Frontend et le Backend d'une application. Un développeur Full Stack est capable de travailler sur tous les aspects d'une application, de la conception de l'interface utilisateur à la gestion des serveurs et des bases de données.</p>
+
+                </div>
+              </div>
+            </div>
+
+          </div>
         </div>
 
-        <HeadingSection titre={"Checkout The Best Portfolios Here"} />
+
+        <div  style={{ minHeight: "20vh" }}>
+          {/* <Button name='More Categories'></Button> */}
+        </div>
+        {/* <HeadingSection titre={"Checkout The Best Portfolios Here"} /> */}
 
       </div>
     </section>

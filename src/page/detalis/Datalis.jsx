@@ -8,10 +8,13 @@ import Swal from 'sweetalert2';
 
 const Datalis = () => {
     const { id } = useParams();
-    const { setid, fetchData, details, setdetails,
+
+    const { setid, setCountOfferDeOmpoila, details, setdetails, CountOfferDeOmpoila ,
         idMessageUser, setidMessageUser, newMessage,
         setnewMessage, sendMessage, handlSumeMessage
     } = useContext(UserContext);
+
+    console.log(CountOfferDeOmpoila);
 
     const [idFree, setidFree] = useState();
     const [error, seterror] = useState();
@@ -40,7 +43,7 @@ const Datalis = () => {
         };
 
         fetchData();
-    }, [id]);
+    }, [id , CountOfferDeOmpoila]);
 
     const handelAccepeter = async (idFree) => {
         const storedToken = localStorage.getItem('token');
@@ -78,6 +81,55 @@ const Datalis = () => {
         }
     }
 
+    const [formData, setFormData] = useState({
+        titre: details?.titre,
+        description: details?.description,
+        prix: details?.prix,
+        image: null,
+    });
+    console.log(formData);
+
+    const handleChange = (e) => {
+        if (e.target.name === 'image') {
+            setFormData({ ...formData, [e.target.name]: e.target.files[0] });
+        } else {
+            setFormData({ ...formData, [e.target.name]: e.target.value });
+        }
+    };
+
+    const handleUpdetOffeDeMpoli = async (event, id) => {
+        event.preventDefault();
+        const storedToken = localStorage.getItem('token');
+
+
+        console.log(formData);
+
+        const config = {
+            headers: {
+                Authorization: 'Bearer ' + storedToken,
+                'Content-Type': 'multipart/form-data'
+            }
+        };
+        try {
+
+            const response = await axios.post(`http://127.0.0.1:8000/api/updateOffer/${details.id}`, formData, config);
+
+            if (response.status === 200) {
+                setCountOfferDeOmpoila((pre) => pre + 1);
+                Swal.fire({
+                    title: 'Succès!',
+                    text: response.data.message,
+                    icon: 'success',
+                    customClass: {
+                        background: 'green'
+                    }
+                });
+            }
+        } catch (error) {
+            console.error('Erreur lors de la modification du projet :', error);
+        }
+    }
+
 
 
 
@@ -97,7 +149,39 @@ const Datalis = () => {
                         <p class="card-text">
                             {details?.description}
                         </p>
+                        <i className="bi btn btn-primary bi-pencil-square text-white " data-bs-toggle="modal" data-bs-target="#ModifeOfferDe"  ></i>
                     </div>
+                    <div className="modal fade" id="ModifeOfferDe" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div className="modal-dialog">
+                            <div className="modal-content">
+                                <div className="modal-header">
+                                    <h5 className="modal-title" id="exampleModalLabel">Modifier le projet</h5>
+                                    <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <form onSubmit={handleUpdetOffeDeMpoli}>
+                                    <div className="modal-body">
+                                        <div className="mb-3">
+                                            <label htmlFor="titre" className="form-label">Titre</label>
+                                            <input type="text" className="form-control" id="titre" name="titre" value={formData.titre} onChange={handleChange} />
+                                        </div>
+                                        <div className="mb-3">
+                                            <label htmlFor="discription" className="form-label">Description</label>
+                                            <textarea className="form-control" id="discription" name="description" value={formData.description} onChange={handleChange} ></textarea>
+                                        </div>
+                                        <div className="mb-3">
+                                            <label htmlFor="image" className="form-label">Image</label>
+                                            <input type="file" className="form-control" id="image" name="image" onChange={handleChange} accept="image/*" />
+                                        </div>
+                                    </div>
+                                    <div className="modal-footer">
+                                        <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+                                        <button type="submit" className="btn btn-primary">Enregistrer les modifications</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
 
                 <div class="table-responsive">

@@ -18,6 +18,9 @@ const DetalisDeFeelancer = () => {
     } = useContext(UserContext);
 
 
+    console.log(educationsFrrelancer);
+
+
     const [count, setcount] = useState(0);
     const { id } = useParams();
 
@@ -29,7 +32,6 @@ const DetalisDeFeelancer = () => {
         getOfferDeOmoloi("get/education/" + id, seteducationsFrrelancer);
     }, [id]);
 
-    console.log(datelsFreelancers);
 
     useEffect(() => {
         getOfferDeOmoloi("commentaires/" + id, setcommanterDatiles);
@@ -77,28 +79,26 @@ const DetalisDeFeelancer = () => {
                     <CompetonceFreelancer skills={skillsDitalis} type={false} />
                 </div>
 
-                <CommentareFreelancer commanter={commanterDatilse} type={false} id={id} count={count} setcount={setcount} />
+                <CommentareFreelancer commanter={commanterDatilse} type={true} id={id} count={count} setcount={setcount} />
 
                 <ProjectProfile type={false} Project={projectDetails} />
 
                 <div className='commaintear education portfolio'>
 
                     <Title title={"Educations"} />
-                    <div className='list_education'>
-                        {educationsFrrelancer ? (
-                            educationsFrrelancer?.map((item, index) => (
-                                <Education Education={item} key={index} />
-                            ))
-                        ) : (
-                            <div disabled>Loading ...</div>
-                        )}
 
-                    </div>
+
+                    {educationsFrrelancer && educationsFrrelancer.length > 0 ? (
+                        educationsFrrelancer.map((item, index) => (
+                            <Education Education={item} key={index} />
+                        ))
+                    ) : null}
+
                 </div>
             </div>
 
 
-        </div>
+        </div >
     );
 }
 

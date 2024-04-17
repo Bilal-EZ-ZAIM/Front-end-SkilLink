@@ -3,7 +3,6 @@ import './cleint.css'
 import CartCleint from "../../compontes/cartCleint/CartCleint";
 import { UserContext } from '../../context/ContextProvider';
 import CartOfferDeomplio from '../../compontes/CartOfferDeomplio/CartOfferDeomplio';
-import Pagination from '../../compontes/Pagination/Pagination';
 const Cleint = () => {
   const { fetchData, utilisateur, logout, handleSubmit, handleFileChange, OfferDeOmpoloiuser, setOfferDeOmpoloiDeuser, CountOfferDeOmpoila } = useContext(UserContext);
 
@@ -11,11 +10,9 @@ const Cleint = () => {
 
   useEffect(() => { fetchData('offerDePlois', setOfferDeOmpoloiDeuser) }, [CountOfferDeOmpoila]);
 
+  console.log(utilisateur);
 
-  console.log(OfferDeOmpoloiuser);
 
-
-  console.log(OfferDeOmpoloiuser);
   return (
     <div className='profile justify-content-center'>
       <div className='container-md '>

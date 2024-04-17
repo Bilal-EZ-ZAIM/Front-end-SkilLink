@@ -8,7 +8,7 @@ import Swal from 'sweetalert2';
 import AlertError from '../../compontes/error/AlertError';
 const Projets = () => {
 
-  const { OfferDeOmpoloi,CountOfferDeOmpoila, setCountOfferDeOmpoila, TypeUtilisateur, setpage } = useContext(UserContext);
+  const { OfferDeOmpoloi, setCountOfferDeOmpoila, TypeUtilisateur, setpage } = useContext(UserContext);
 
   const [titre, setTitre] = useState('');
   const [description, setDescription] = useState('');
@@ -27,8 +27,16 @@ const Projets = () => {
     const formData = new FormData();
     formData.append('titre', titre);
     formData.append('description', description);
-    formData.append('prix', prix);
-    formData.append('image', image);
+    if (prix > 0) {
+      formData.append('prix', prix);
+    } else {
+      setErrorPrix("le Pris is 1 > 0");
+    }
+
+    if (image) {
+      formData.append('image', image);
+    }
+
 
     try {
       const config = {

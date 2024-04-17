@@ -7,9 +7,12 @@ import { UserContext } from '../../context/ContextProvider';
 
 const CartOfferDeomplio = ({ offer, user, name }) => {
 
-    const { IdP, setIdP, TypeUtilisateur } = useContext(UserContext);
-    const { titre, image, prix, description } = offer;
+    const { IdP, setIdP, TypeUtilisateur, delet, setCountOfferDeOmpoila } = useContext(UserContext);
+    const { titre, image, prix, description, id } = offer;
     const { nom } = user;
+    const [getId, setgetId] = useState();
+
+
 
 
 
@@ -28,6 +31,8 @@ const CartOfferDeomplio = ({ offer, user, name }) => {
         const formData = {
             description: descriptions
         };
+
+        console.log(formData);
 
         try {
             const config = {
@@ -67,6 +72,14 @@ const CartOfferDeomplio = ({ offer, user, name }) => {
         }
     };
 
+    const handlSuppremerOffer = async (id) => {
+
+        await delet("deleteOffer", id, setCountOfferDeOmpoila);
+
+    }
+
+
+
     return (
         <div className="card mt-5" style={{ maxWidth: '500px', minWidth: '250px', width: '100%' }}>
             <div className="card-body">
@@ -94,15 +107,20 @@ const CartOfferDeomplio = ({ offer, user, name }) => {
 
                 <p className="card-text">Nom: {nom} </p>
                 <hr />
-                {image !== "null" && <img src={image} className="card-img-top img-fluid" alt={titre} />}
-                <p> {offer.id} </p>
-                <p className="card-text">Titre: {titre}</p>
-                <p className="card-text">discription: {description}</p>
-                <p className="card-text">Prix: {prix}</p>
+                {image && <img src={image} className="card-img-top img-fluid" alt={titre} />}
+
+                <p className="card-text"><strong> {titre} </strong> </p>
+                <p className="card-text"><strong>  discription: </strong>  {description}</p>
+                <p className="card-text"><strong> Prix: </strong> {prix} DH</p>
                 <hr />
                 {
                     name === "Detai" ?
-                        <Link to={`/datalise/${offer.id}`} className="btn btn-primary"> {name} </Link> :
+                        <>
+                            <Link to={`/datalise/${offer.id}`} className="btn btn-primary ">{name}</Link>
+                            <i className="bi btn btn-primary bi-trash text-white m-2" onClick={() => handlSuppremerOffer(id)}></i>
+
+
+                        </> :
 
                         TypeUtilisateur === 2 && (
                             <div>
