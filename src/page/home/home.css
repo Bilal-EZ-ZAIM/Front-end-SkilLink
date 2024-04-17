@@ -1,9 +1,13 @@
 .rigth{
     height: 40vh;
     width: 400px;
-    background-color: gray;
 }
 
+.rigth img{
+    height: 100%;
+    width: 100%;
+    background-color: #f0f5ff;
+}
 @media (max-width: 992px) {
     .rigth {
         display: none;

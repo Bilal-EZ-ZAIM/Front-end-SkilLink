@@ -41,7 +41,6 @@ body{
 
 .information_freelancer {
   margin-top: 120px;
-  height: max-content;
   gap: 30px;
   display: flex;
   flex-direction: column;
@@ -51,35 +50,71 @@ body{
   display: flex;
   justify-content: space-between;
   gap: 10px;
+  height: max-content;
 }
+
+
 
 .information_freelancer .info_one {
   background-color: #FFFFFF;
   border-radius: 10px;
   padding: 20px;
-  width: 70%;
+  min-width: 70%;
+  height: auto;
 }
 
-.information_freelancer .info_one .image_freelancer{
 
+@media (max-width:772px) {
+  .information_freelancer .info {
+    display: flex;
+    flex-direction: column;
+  }
+  .information_freelancer .info_one .image_freelancer{
+ 
+    flex-direction: column;
+    align-items: center;
+  }
+  
+}
+
+
+.information_freelancer .info_one .image_freelancer{
   width: 100%;
-  height: 50vh;
   display: flex;
   gap: 20px;
 
 }
 .information_freelancer .info_one .image_freelancer .image{
-  max-width: 200px;
-  min-width: 200px;
-  height: 50vh;
+  width: 350px;
+  min-width: 250px;
+  height: max-content;
 
  
 }
 .information_freelancer .info_one .image_freelancer .image img{
  width: 100%;
- height: 38vh;
+ height: auto;
  border-radius: 10px;
 
+}
+
+@media (max-width:440px) {
+  .information_freelancer .info_one {
+    padding: 5px;
+  }
+  .information_freelancer .info_one .image_freelancer{
+    padding: 0;
+    flex-direction: column;
+    align-items: center;
+  }
+  .information_freelancer .info_one .image_freelancer .image{ 
+   width: 100%;
+  }
+  .information_freelancer .info_one .image_freelancer .image img{ 
+    
+    padding: 0;
+  }
+  
 }
 
 .information_freelancer .info_two {
@@ -87,6 +122,18 @@ body{
   border-radius: 10px;
   width: 30%;
   height: max-content;
+  
+}
+
+@media (max-width:1000px) {
+  .information_freelancer .info {
+    display: flex;
+    flex-direction: column;
+  }
+  .information_freelancer .info_two,
+  .information_freelancer .info_one{
+    width: 100%;
+  }
   
 }
 .information_freelancer .info_two .title{
@@ -107,6 +154,12 @@ body{
   border-radius: 50px;
   font-size: 12px;
   font-weight: bold;
+  
+}
+.modiferProfile{
+position:absolute;
+top: 10px;
+right: 10px;
 }
 .contact{
   margin-top:10px;
@@ -148,10 +201,26 @@ p{
 } */
 .description{
   position: relative;
+  width: 100%;
 }
 .modiferProfile{
   position: absolute;
   right: 0;
+}
+
+@media (max-width:440px) {
+ 
+  .description h4{
+    font-size: 16px;
+  }
+
+  .description p {
+    font-size: 14px;
+  }
+
+  .description strong{
+    font-size: 14px;
+  }
 }
 
 img{
@@ -192,6 +261,13 @@ img{
   overflow: hidden;
   flex-wrap: wrap;
 }
+@media (max-width:440px) {
+ 
+  .commaintear .list_cart{
+    padding: 5px;
+    padding-top: 20px;
+  }
+}
 
 .portfolio{
   position: relative;
@@ -217,6 +293,15 @@ img{
   padding: 20px;
 }
 
+@media (max-width:440px) {
+
+  .list_cart_project{
+    display: grid;
+    grid-template-columns: repeat(auto-fill , minmax(200px,1fr));
+    gap: 20px;
+    padding: 5px;
+  }
+}
+
 .list_education{
-  
 }

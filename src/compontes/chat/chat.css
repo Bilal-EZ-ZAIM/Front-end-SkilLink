@@ -1,0 +1,28 @@
+.chat-card:hover {
+  background-color: #eaeaea;
+  cursor: pointer;
+}
+
+.chatRoooms {
+  width: 100%;
+  height: 12vh;
+  display: flex;
+  gap: 20px;
+  padding: 15px;
+  align-items: center;
+  cursor: pointer;
+
+}
+
+.chatRoooms:hover {
+  background-color: #eaeaea;
+}
+
+.chatRoooms img {
+  width: 60px;
+  height: 60px;
+  border-radius: 50px;
+}
+ 
+ 
+

@@ -19,6 +19,11 @@ import PageNotFound from "./PageNotFound/PageNotFound";
 import Freelancer from "./auth/AuthFreelancer";
 import AuthAdmin from "./auth/AuthAdmin";
 import AuthLoginRegester from "./auth/AuthLoginRegester";
+import Cleint from "./page/cleint/Cleint";
+import Datalis from "./page/detalis/Datalis";
+import DetalisDeFeelancer from "./page/detalisDeFeelancer/DetalisDeFeelancer";
+import Messager from "./page/messager/Messager";
+
 
 
 
@@ -41,17 +46,19 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/projets" element={<Projets />} />
           <Route path="/independants" element={<Independants />} />
+          <Route path='/datalise/:id' element={<Datalis />} />
+          <Route path='/DetalisDeFeelancer/:id' element={<DetalisDeFeelancer />} />
 
 
           <Route element={< AuthLoginRegester />} >
             <Route path="/login" element={<Login />} />
             <Route path="/regester" element={< Regrster />} />
-
-
           </Route>
-
+          <Route path="/messager" element={<Messager />} />
           <Route path="/pro" element={<  ImageUpload />} />
           <Route element={<RequierAuth />} >
+
+            <Route path="/cleint" element={< Cleint />} />
             <Route element={<Freelancer />} >
               <Route path="/profile" element={< Profile />} />
             </Route>
