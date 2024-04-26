@@ -50,6 +50,8 @@ const ContextProvider = ({ children }) => {
   const [SupProject, setSupProject] = useState(1);
   const [getContact, setgetContact] = useState();
   const [CountCountact, setCountCountact] = useState(1);
+  const [countSupEducation, setcountSupEducation] = useState(1);
+  const [Accepter, setAccepter] = useState(1);
   const handleFileChange = (event) => {
     setSelectedFile(event.target.files[0]);
     console.log(selectedFile);
@@ -109,10 +111,10 @@ const ContextProvider = ({ children }) => {
   };
 
 
-  const delet = async (endPoint, id , UseCount) => {
+  const delet = async (endPoint, id, UseCount) => {
     const storedToken = localStorage.getItem('token');
 
-   
+
     try {
       const config = {
         headers: {
@@ -146,6 +148,7 @@ const ContextProvider = ({ children }) => {
   }
 
   const logout = async () => {
+
     const storedToken = localStorage.getItem('token');
 
     if (storedToken) {
@@ -158,10 +161,10 @@ const ContextProvider = ({ children }) => {
         };
 
         const response = await axios.get('http://127.0.0.1:8000/api/logout', config);
-        localStorage.removeItem('token');
+
         if (response.status === 200) {
           setTypeUtilisateur(null);
-
+          localStorage.removeItem('token');
           setUtilisateur("");
           setIsAuthenticated(false);
         }
@@ -239,7 +242,7 @@ const ContextProvider = ({ children }) => {
     if (storedToken) {
       fetchData('detaieOffer/' + id, setdetails);
     }
-  }, [id]);
+  }, [id , Accepter]);
 
   const sendMessage = async () => {
     const storedToken = localStorage.getItem('token');
@@ -275,8 +278,7 @@ const ContextProvider = ({ children }) => {
     if (sen.status === 201) {
       console.log("Données enregistrées avec succès !");
       setnewMessage("");
-
-
+      
       Swal.fire({
         title: 'Succès!',
         text: sen.data.message,
@@ -312,7 +314,7 @@ const ContextProvider = ({ children }) => {
 
   return (
     <UserContext.Provider value={{
-      Educations, delet,getContact, setgetContact,
+      Educations, delet, getContact, setgetContact,
       Comantear, setComantear, api,
       IdSkills, setIdSkills,
       isAuthenticated,
@@ -323,8 +325,8 @@ const ContextProvider = ({ children }) => {
       Competons, Developer,
       setProject, Project,
       setTypeUtilisateur, isLogin,
-      TypeUtilisateur,CountCountact, setCountCountact,
-      OfferDeOmpoloi,
+      TypeUtilisateur, CountCountact, setCountCountact,
+      OfferDeOmpoloi, countSupEducation, setcountSupEducation,
       setOfferDeOmpoloi,
       getOfferDeOmoloi,
       isLogin, setid, setIdF, datelsFreelancer,
@@ -332,7 +334,7 @@ const ContextProvider = ({ children }) => {
       setpage, setpageC, fetchData, IdP, setIdP,
       logout, handleSubmit, handleFileChange, OfferDeOmpoloiuser,
       IdProject, setIdProject,
-      Project, setProject,
+      Project, setProject,setAccepter,
       Skills, setSkills, newMessage, setnewMessage,
       setEducation, Educations,
       CountEdicatio, setCountEdicatio,

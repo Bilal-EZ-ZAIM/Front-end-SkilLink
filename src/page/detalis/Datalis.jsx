@@ -5,11 +5,12 @@ import { useEffect } from 'react';
 import { useState } from 'react';
 import axios from 'axios';
 import Swal from 'sweetalert2';
+import './datalis.css'
 
 const Datalis = () => {
     const { id } = useParams();
 
-    const { setid, setCountOfferDeOmpoila, details, setdetails, CountOfferDeOmpoila ,
+    const { setAccepter, setCountOfferDeOmpoila, details, setdetails, CountOfferDeOmpoila ,
         idMessageUser, setidMessageUser, newMessage,
         setnewMessage, sendMessage, handlSumeMessage
     } = useContext(UserContext);
@@ -59,7 +60,7 @@ const Datalis = () => {
             console.log(response.data.message);
             console.log(response);
             if (response.status === 200) {
-
+                setAccepter(pre => pre + 1);
                 Swal.fire({
                     title: 'Success!',
                     text: response.data.Notification.message,

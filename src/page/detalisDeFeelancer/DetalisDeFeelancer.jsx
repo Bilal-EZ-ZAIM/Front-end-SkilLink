@@ -32,6 +32,7 @@ const DetalisDeFeelancer = () => {
         getOfferDeOmoloi("get/education/" + id, seteducationsFrrelancer);
     }, [id]);
 
+    console.log(educationsFrrelancer);
 
     useEffect(() => {
         getOfferDeOmoloi("commentaires/" + id, setcommanterDatiles);
@@ -45,6 +46,25 @@ const DetalisDeFeelancer = () => {
         borderRadius: "50px",
         fontSize: "18px",
         maxWidth: "150px"
+    }
+
+    const [numberAfficehrEducation, setnumberAfficehrEducation] = useState(3);
+    const [contentButton, setcontentButton] = useState("afficher touts")
+    const displayedEduction = educationsFrrelancer ? educationsFrrelancer?.slice(0, numberAfficehrEducation) : [];
+    const [fond, setfond] = useState(1);
+    const handelAffecher = () => {
+
+        if (fond === 1) {
+            setfond(0);
+            setnumberAfficehrEducation(Educations?.length);
+            setcontentButton('afficher moins');
+
+        } else {
+            setfond(1);
+            setcontentButton('afficher touts')
+            setnumberAfficehrEducation(3);
+        }
+
     }
 
 
@@ -88,12 +108,21 @@ const DetalisDeFeelancer = () => {
                     <Title title={"Educations"} />
 
 
-                    {educationsFrrelancer && educationsFrrelancer.length > 0 ? (
-                        educationsFrrelancer.map((item, index) => (
-                            <Education Education={item} key={index} />
+                    {educationsFrrelancer && educationsFrrelancer?.length > 0 ? (
+                        displayedEduction?.map((item, index) => (
+                            <Education Education={item} key={index} type={false} />
                         ))
                     ) : null}
-
+                    {
+                        educationsFrrelancer?.length > 3 && <div className="text-center m-4">
+                            <button
+                                className="btn btn-danger"
+                                onClick={handelAffecher}
+                            >
+                                {contentButton}
+                            </button>
+                        </div>
+                    }
                 </div>
             </div>
 

@@ -81,7 +81,7 @@ const CartOfferDeomplio = ({ offer, user, name }) => {
 
 
     return (
-        <div className="card mt-5" style={{ maxWidth: '500px', minWidth: '250px', width: '100%' }}>
+        <div className="card mt-5" style={{ maxWidth: '1000px', minWidth: '250px', width: '100%' }}>
             <div className="card-body">
                 {user.image ? (
                     <img

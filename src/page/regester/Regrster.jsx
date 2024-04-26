@@ -18,7 +18,7 @@ const Register = () => {
   const [errorPassword, setErrorPassword] = useState("");
   const [errorDescription, setErrorDescription] = useState("");
 
-
+  console.log(userType);
   const handleSubmit = async (event) => {
     event.preventDefault();
     const formData = {
@@ -126,26 +126,13 @@ const Register = () => {
             <label htmlFor="password">Mot de passe</label>
             {errorPassword && <AlertError error={errorPassword} />}
           </div>
-          <div class="form-check">
-            <input class="form-check-input"
-              type="radio"
-              name="flexRadioDefault"
-              id="freelancer"
-              value="freelancer"
-              onChange={() => setUserType(2)} checked />
-            <label class="form-check-label" for="flexRadioDefault2">
-              freelancer
-            </label>
-          </div>
-          <div class="form-check ">
-            <input className="form-check-input " onChange={() => setUserType(3)}
-              type="radio"
-              name="flexRadioDefault" id="client"
-              value="client" />
-            <label class="form-check-label" for="flexRadioDefault1">
-              Client
-            </label>
-          </div>
+          <select className="form-select mb-3" onChange={(event) => setUserType(event.target.value)}>
+            <option value="3">Client</option>
+            <option value="2" selected>Freelancer</option>
+          </select>
+
+
+
           <button type="submit" className="btn btn-primary w-100">
             S'inscrire
           </button>

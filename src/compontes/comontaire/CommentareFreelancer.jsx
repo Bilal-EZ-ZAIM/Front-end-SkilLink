@@ -106,7 +106,7 @@ const CommentareFreelancer = ({ commanter, id, setcount, count ,type}) => {
                     ))
                 ) : (
                     <div disabled>Loading ...</div>
-                )}
+                )  }
 
             </div>
 

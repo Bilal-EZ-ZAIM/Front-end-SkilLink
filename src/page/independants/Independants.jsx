@@ -5,7 +5,7 @@ import { UserContext } from '../../context/ContextProvider';
 import { useContext } from 'react';
 
 const Independants = () => {
-  const {freelancers, setfreelancer} = useContext(UserContext)
+  const { freelancers, setfreelancer } = useContext(UserContext)
   useEffect(() => {
     async function getData() {
       try {
@@ -28,9 +28,9 @@ const Independants = () => {
 
       <main>
 
-        <section class="py-5 text-center container">
+        <section class="indeponto py-5 text-center container-md" style={{ minHeight: '40vh' }}>
           <div class="row py-lg-5">
-            <div class="col-lg-6 col-md-8 mx-auto">
+            <div class="parent col-lg-6 col-md-8 mx-auto">
               <h1 class="fw-light">Bienvenue sur notre plateforme Freelancer</h1>
               <p class="lead text-body-secondary">Trouvez les meilleurs freelancers pour vos projets</p>
             </div>

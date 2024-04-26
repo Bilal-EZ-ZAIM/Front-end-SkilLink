@@ -10,9 +10,9 @@ const Header = () => {
   const [imgData, setImgData] = useState(null);
   return (
     <header className="header">
-      <div className="container-md d-flex justify-content-between ">
+      <div className="container-md d-flex justify-content-between">
         <div className="logo d-flex align-items-center">
-          Skil<span>Link</span>
+          <img src={require('./logo.png')} alt="" />
         </div>
         <div className="menu_bar h-100  align-items-center">
           <i onClick={() => settoogle(pre => pre = !toogle)} className={toogle === true ? "bi bi-list fs-1" : "bi bi-x-lg fs-1"}></i>
@@ -22,14 +22,11 @@ const Header = () => {
           <li onClick={() => settoogle(true)} > <NavLink to="/"> Home </NavLink></li>
           <li onClick={() => settoogle(true)} > <NavLink to="/projets"> Offres d’emploi  </NavLink></li>
           <li onClick={() => settoogle(true)} > <NavLink to="/independants"> Indépendants </NavLink></li>
-          <li onClick={() => settoogle(true)} > <NavLink to="/messager"> Messager </NavLink></li>
-          {/* <li className="btn btn dropdown-toggle" type="button" data-bs-toggle="dropdown" onClick={() => settoogle(true)} > <NavLink to="/independants"> <i className="bi bi-bell"></i>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="#">Action</a></li>
-              <li><a class="dropdown-item" href="#">Another action</a></li>
-              <li><a class="dropdown-item" href="#">Something else here</a></li>
-            </ul>
-          </NavLink></li> */}
+          
+          {isAuthenticated && (
+            <li onClick={() => settoogle(true)} > <NavLink to="/messager"> Messenger</NavLink></li>
+
+          )}
           {!isAuthenticated && (
             <li onClick={() => settoogle(true)}>
               <NavLink to="/login">Se connecter</NavLink>

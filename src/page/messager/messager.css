@@ -6,6 +6,9 @@
     max-height: 100vh;
 }
 
+.cont{
+    margin-top: 15vh;
+}
 .content .chatRoom {
     width: 30%;
     height: 100%;

@@ -20,12 +20,7 @@ const CompetonceFreelancer = ({ type, skills }) => {
 
 
     const handleSuppremerCompetence = async (id) => {
-
         await delet("suppermer/competonce", id , setIdSkills);
-
-
-
-
     }
 
     const handleAddCompetence = async () => {

@@ -15,8 +15,8 @@ import Contact from '../../compontes/contatc/Contact';
 const Profile = () => {
 
   const {
-    count, fetchData,getContact, setgetContact,
-    Comantear, setComantear,CountCountact, setCountCountact,
+    count, fetchData, getContact, setgetContact,
+    Comantear, setComantear, CountCountact, setCountCountact,
     IdSkills, Project, setProject, IdProject,
     utilisateur, CountEdicatio, setCountEdicatio, SupProject, setSupProject,
     logout, Skills, setSkills, setEducation, Educations, getOfferDeOmoloi, nomTypeDeveloper, setnomTypeDeveloper
@@ -41,26 +41,6 @@ const Profile = () => {
   const [close, setclose] = useState(null);
 
 
-  // const fetchData = async (endPoint, storyData) => {
-  //   const storedToken = localStorage.getItem('token');
-
-  //   try {
-  //     const config = {
-  //       headers: {
-  //         Authorization: 'Bearer ' + storedToken,
-  //         'Content-Type': 'application/json'
-  //       }
-  //     };
-  //     const response = await axios.get(api + endPoint, config);
-  //     storyData(response.data);
-  //   } catch (error) {
-  //   }
-  // };
-
-
-  // {
-  //   Skills ? console.log("bilal oui ") : console.log("No Bilal");
-  // }
 
   useEffect(() => {
     fetchData('get/competonce', setSkills);
@@ -83,13 +63,12 @@ const Profile = () => {
     fetchData('contact', setgetContact);
   }, [CountCountact]);
 
-  console.log(getContact);
 
   useEffect(() => {
     getOfferDeOmoloi('getDeveloperType', setnomTypeDeveloper);
   }, []);
 
-  console.log(nomTypeDeveloper);
+  console.log(Educations);
 
 
 
@@ -181,6 +160,24 @@ const Profile = () => {
   }
 
 
+  const [numberAfficehrEducation, setnumberAfficehrEducation] = useState(3);
+  const [contentButton, setcontentButton] = useState("afficher touts")
+  const displayedEduction = Educations ? Educations?.slice(0, numberAfficehrEducation) : [];
+  const [fond, setfond] = useState(1);
+  const handelAffecher = () => {
+    
+    if(fond === 1){
+      setfond(0);
+      setnumberAfficehrEducation(Educations?.length);
+      setcontentButton('afficher moins');
+      
+    }else{
+      setfond(1);
+      setcontentButton('afficher touts')
+      setnumberAfficehrEducation(3);
+    }
+    
+  }
 
 
 
@@ -196,9 +193,9 @@ const Profile = () => {
 
           <CompetonceFreelancer skills={Skills} type={true} />
         </div>
-        <Contact type={true}   Contact={getContact} />
+        <Contact type={true} Contact={getContact} />
         <CommentareFreelancer commanter={Comantear} type={false} />
-        <ProjectProfile type={true}  Project={Project}  />
+        <ProjectProfile type={true} Project={Project} />
 
         <div className='commaintear education portfolio'>
 
@@ -281,12 +278,22 @@ const Profile = () => {
               </div>
 
             </div>
-            {Educations && Educations.length > 0 ? (
-              Educations.map((item, index) => (
-                <Education Education={item} key={index} />
+            {Educations && Educations?.length > 0 ? (
+              displayedEduction?.map((item, index) => (
+                <Education Education={item} key={index} type={true} />
               ))
             ) : null}
           </div>
+          {
+            Educations?.length > 3 && <div className="text-center m-4">
+              <button
+                className="btn btn-danger"
+                onClick={handelAffecher}
+              >
+                {contentButton}
+              </button>
+            </div>
+          }
         </div>
 
       </div>

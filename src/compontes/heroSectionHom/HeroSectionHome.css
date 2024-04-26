@@ -1,65 +1,82 @@
-.heroSection{
+.heroSection {
     height: 90vh;
     background-color: #F2FAFA;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
-.heroSection .container-md{
+
+.heroSection .container-md {
     display: flex;
     align-items: center;
 }
-.lefth-heroSection{
+
+.lefth-heroSection {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     line-height: 3;
     align-items: center;
 }
-.lefth-heroSection h1{
+
+.lefth-heroSection h1 {
     color: #252525;
     margin-bottom: 30px;
     font-size: 64px;
 }
 
-.lefth-heroSection p{
+.lefth-heroSection p {
     font-size: 24px;
     color: #656565;
     line-height: 1.3;
     margin-bottom: 30px;
-    
+
 }
+
 @media (max-width: 992px) {
-    .lefth-heroSection h1{
+    
+
+    .lefth-heroSection h1 {
         font-size: 30px;
     }
-    .lefth-heroSection p{
+
+    .lefth-heroSection p {
         font-size: 18px;
     }
-  }
+}
 
 
-.rigth-heroSection{
+.rigth-heroSection {
     min-width: 50%;
 }
-.rigth-heroSection .image-hero-section img{
+
+.rigth-heroSection .image-hero-section img {
     width: 100%;
 }
+
 @media (max-width: 768px) {
-    .rigth-heroSection{
+   
+
+    .rigth-heroSection {
         display: none;
     }
-    .lefth-heroSection h1{
+
+    .lefth-heroSection h1 {
         font-size: 22px;
     }
-    .lefth-heroSection p{
+
+    .lefth-heroSection p {
         font-size: 16px;
         min-width: 200px;
         max-width: 350px;
     }
-    .lefth-heroSection{
+
+    .lefth-heroSection {
         display: flex;
         flex-direction: column;
         justify-content: space-between;
         line-height: 3;
-        height: 35vh;
+        height: 100%;
         width: 100%;
     }
 }

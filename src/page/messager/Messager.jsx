@@ -87,11 +87,11 @@ const Messager = () => {
     console.log(Messages);
 
     return (
-        <div className='container-md'>
+        <div className='cont container-md'>
             <div className="content mt-5 mb-5" >
                 <div className={addClass === 0 ? 'chatRoom meesa' : 'chatRoom'}>
                     <div className='heading'>
-                        <input type="text" placeholder='search' />
+                        
                     </div>
                     <div className='body_rome'>
                         {

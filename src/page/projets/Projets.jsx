@@ -134,7 +134,7 @@ const Projets = () => {
                   onChange={(e) => setprix(e.target.value)}
                   placeholder="Entrez la Prix"
                 />
-                <label htmlFor="prix">Description</label>
+                <label htmlFor="prix">Prix</label>
                 {errorPrix && <AlertError error={errorPrix} />}
               </div>
 
